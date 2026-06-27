@@ -23,12 +23,13 @@ The goal of this project is to simulate the robot Turtle3 that represent a ready
 ## Front view
 ![MobileRobot3_Simulation_image_2](images/2_Bot_Front.png)
 ## Robot's Joints
+https://github.com/user-attachments/assets/8f2fa331-0ee6-499d-a826-a313de59874f
 
 # Robot in GAZEBO
 ## LiDAR publishes LaserScan message to rviz2
 ![MobileRobot3_Simulation_image_7](images/7_LiDAR_rviz2.png)
 ## The robot moves in Gazebo
-
+https://github.com/user-attachments/assets/cb8e6ddd-4ad5-4fda-ba07-5f927e4eeb2a
 
 # Bill of Materials
 ![MobileRobot3_Simulation_image_10](images/10_BOM.png)

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<robot name="turtle_bot_3">
+
+
+  <material name="black">
+        <color rgba="0.141 0.129 0.141 1"/>
+  </material>
+
+  <material name="matte_black">
+    <color rgba="0.235 0.235 0.235 1.0"/>
+  </material>
+
+  <material name="grey">
+    <color rgba="0.212 0.271 0.310 1.0"/>
+  </material>
+
+  <material name="dark_silver">
+    <color rgba="  0.663   0.663   0.663 1.0"/>
+  </material>
+
+  <material name="charcoal_grey">
+    <color rgba="0.439 0.502 0.565 1.0"/>
+  </material>
+
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 1"/>
+  </material>
+
+  <material name="rosy_brown">
+    <color rgba="0.737 0.561 0.561 1"/>
+  </material>
+
+  <material name="crimson">
+    <color rgba="0.863 0.078 0.235 1"/>
+  </material>
+
+  <material name="light_coral">
+    <color rgba="0.941 0.502 0.502 1"/>
+  </material>
+
+  <material name="blue">
+    <color rgba="0.0 0.0 1.0 1"/>
+  </material>
+
+  <material name="cadet_blue">
+    <color rgba="0.373 0.620 0.627 1.0"/>
+  </material>
+
+  <material name="steel_blue">
+    <color rgba="0.275 0.510 0.706 1.0"/>
+  </material>
+
+  <material name="green">
+    <color rgba="0.0 1.0 0.0 1"/>
+  </material>
+
+  <material name="sea_green">
+    <color rgba="0.180 0.545 0.341 1"/>
+  </material>
+
+  <material name="yellow">
+    <color rgba="1.0 1.0 0.0 1.0"/>
+  </material>
+
+
+  <material name="golden_yellow">
+    <color rgba="1.0 0.843 0.0 1.0"/>
+  </material>
+
+  <material name="light_goldenrod">
+    <color rgba="0.980 0.980 0.824 1.0"/>
+  </material>
+
+
+
+
+  <!--**** Step One ****-->
+
+
+  <link name="base_link">
+  </link>
+
+
+  <!-- First Plate -->
+
+  <link name="first_plate">
+    <visual>
+      <geometry>
+        <box size="0.1375 0.1375 0.009"/>
+      </geometry>
+    </visual>
+
+    <collision>
+        <geometry>
+          <box size="0.1357 0.1357 0.009"/>
+        </geometry>
+    </collision>
+  
+    <inertial>
+        <mass value="0.035"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <inertia ixx="5.394517916666666e-05" ixy="0" ixz="0" iyy="5.394517916666666e-05" iyz="0" izz="0.00010741785833333331"/>
+    </inertial>
+  </link>
+
+    <joint name="base_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="base_link" />
+        <child link="first_plate" />
+    </joint>
+
+    <gazebo reference="battery">
+        <material>Gazebo/DarkYellow</material>
+    </gazebo>
+
+
+
+  </robot>

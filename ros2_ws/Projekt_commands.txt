@@ -1,0 +1,107 @@
+
+
+**Projekt**
+
+TurtleBot3
+- Hardware Documentation : https://discourse.ros.org/t/tb3-turtlebot3-hardware-free-for-you/1444
+
+
+Create files:
+	cd ~/ros2_ws/src
+	ros2 pkg create --build-type ament_cmake ros2_urdf_project --dependencies urdf xacro
+	cd ~/ros2_ws/src/ros2_urdf_project
+	mkdir launch rviz urdf
+	touch urdf/tb3_burger.urdf
+	touch launch/state_publisher.launch.py 
+	touch rviz.launch.py spawn.launch.py
+	cd ..
+	cd rviz ; touch tb3_burger.rviz
+
+
+
+Calculate inertia(in course) terminal
+	cd ~/ros2_ws
+	rm -rf build install log
+	source /home/simulations/ros2_sims_ws/install/setup.bash
+	colcon build
+	source install/setup.bash
+	ros2 run spawn_robot_tools_pkg inertia_wizzard 
+
+
+Launch simulation
+	source ~/simulation_ws/install/setup.bash
+	ros2 launch turtlebot3_gazebo main_turtlebot3_lab.launch.xml
+
+
+Compile and launch state_publisher-Shell1
+	cd ~/ros2_ws
+	colcon build --packages-select ros2_urdf_project
+	source install/setup.bash
+	ros2 launch ros2_urdf_project state_publisher.launch.py 
+	
+	
+Show to rivz2-Shell2
+
+	cd ~/ros2_ws
+	source install/setup.bash
+	ros2 launch ros2_urdf_project rviz.launch.py
+
+
+Publish Joint Frame:
+	cd ~/ros2_ws
+	source install/setup.bash
+	ros2 run joint_state_publisher_gui joint_state_publisher_gui
+
+
+Spawn to Gazebo
+
+	cd ~/ros2_ws
+	source install/setup.bash
+	ros2 launch ros2_urdf_project spawn.launch.py
+
+	
+Calculate the inertia- Project script:
+	cd ~/ros2_ws
+	source install/setup.bash
+	cd src/ros2_urdf_project/urdf
+	python3 inertia_calculator.py
+
+-Save the configurations you made on rivz2
+	-why? to avoid repeating the choices you make each time after launching rivz2
+	-on th window of rivz2 right click file and (save as)
+	-choose your path or folder and save
+
+-Add Controller:
+	cd ~/ros2_ws/src
+	mkdir -p ros2_urdf_project/config
+	touch ros2_urdf_project/config/lidar_spinn_controller.yaml
+	rm ~/ros2_ws/src/ros2_urdf_project/config/controller_position.yaml
+
+-Create Launch file for the controllers
+	cd ~/ros2_ws/src
+	touch ros2_urdf_project/launch/controller.launch.py
+
+
+-Luanch the controllers
+	cd ~/ros2_ws
+	colcon build --packages-select ros2_urdf_project
+	source install/setup.bash
+	ros2 launch ros2_urdf_project controller.launch.py 
+
+-Control the robot with Keyboard
+	ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+******************************************************************************
+******************************************************************************
+
+Gazebo PKG
+Create PKG
+	cd ~/ros2_ws/src
+	ros2 pkg create --build-type ament_cmake ros2_urdf_project_gazebo --dependencies rclpy gazebo_ros ros2_urdf_project
+	cd ros2_urdf_project_gazebo
+	mkdir models
+	git clone https://bitbucket.org/theconstructcore/course_urdf_ros2_models.git
+	cp -rf course_urdf_ros2_models/models ./
+	rm -rf course_urdf_ros2_models
+	mkdir launch
+	touch launch/start_world.launch.py
